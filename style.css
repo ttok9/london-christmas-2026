@@ -34,3 +34,9 @@ html{overflow-x:hidden}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe 
 .guide-paragraph+.guide-paragraph{margin-top:7px!important}
 .guide-spoiler{padding:7px 0;border-top:1px solid #e1e9e4;margin-top:8px}
 .guide-spoiler summary{padding:4px 0}
+
+/* Compact location photo thumbnails beside itinerary headings */
+.stop .stop-thumb{float:right;width:58px;height:58px;object-fit:cover;object-position:center;border-radius:8px;margin:0 0 5px 10px;background:#e8ece7;border:1px solid #e0e5dc}
+.stop .stop-thumb[hidden]{display:none}
+.stop button[data-focus]::after{content:"";display:block;clear:both}
+@media(max-width:480px){.stop .stop-thumb{width:52px;height:52px;border-radius:7px;margin-left:8px}}
