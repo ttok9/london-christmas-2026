@@ -26,3 +26,11 @@ html{overflow-x:hidden}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe 
 .guide-step p{margin:0!important;font-size:13px!important;line-height:1.85!important;color:#253c34!important}
 
 .guide-spoiler{border-top:1px solid #e1e9e4;padding:10px 0}.guide-spoiler summary{padding:7px 0;color:#89543a;font-size:12px;font-weight:700}.guide-spoiler summary::after{display:none}.guide-spoiler p{padding:8px 0 2px!important;margin:0!important;font-size:13px!important;line-height:1.85!important}
+
+/* Compact continuous docent text, optimized for reading on a phone */
+.guide-body{padding:0 13px 12px;font-size:13px;line-height:1.65}
+.guide-intro{margin:0 0 6px;font-size:11px;color:#718078}
+.guide-paragraph{margin:0!important;padding:0!important;font-size:13px!important;line-height:1.72!important;color:#253c34!important}
+.guide-paragraph+.guide-paragraph{margin-top:7px!important}
+.guide-spoiler{padding:7px 0;border-top:1px solid #e1e9e4;margin-top:8px}
+.guide-spoiler summary{padding:4px 0}
