@@ -40,3 +40,9 @@ html{overflow-x:hidden}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe 
 .stop .stop-thumb[hidden]{display:none}
 .stop button[data-focus]::after{content:"";display:block;clear:both}
 @media(max-width:480px){.stop .stop-thumb{width:82px;height:82px;border-radius:8px;margin-left:8px}}
+
+/* Tap a stop thumbnail to view a larger image; tap backdrop to close */
+.stop .stop-thumb{cursor:zoom-in}
+#photoViewer{border:0;padding:0;background:transparent;max-width:min(94vw,1000px);max-height:90dvh;overflow:visible;box-shadow:none}
+#photoViewer::backdrop{background:rgba(10,18,16,.84)}
+#photoViewer img{display:block;max-width:94vw;max-height:88dvh;width:auto;height:auto;object-fit:contain;border-radius:10px;cursor:zoom-out;box-shadow:0 12px 45px rgba(0,0,0,.35)}
