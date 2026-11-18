@@ -24,3 +24,5 @@ html{overflow-x:hidden}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe 
 .guide-step{border-top:1px solid #e1e9e4;padding:12px 0}
 .guide-step strong{display:block;font-size:12px;color:#24644d;margin-bottom:4px}
 .guide-step p{margin:0!important;font-size:13px!important;line-height:1.85!important;color:#253c34!important}
+
+.guide-spoiler{border-top:1px solid #e1e9e4;padding:10px 0}.guide-spoiler summary{padding:7px 0;color:#89543a;font-size:12px;font-weight:700}.guide-spoiler summary::after{display:none}.guide-spoiler p{padding:8px 0 2px!important;margin:0!important;font-size:13px!important;line-height:1.85!important}
