@@ -11,3 +11,16 @@ html{overflow-x:hidden}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe 
 .travelguide strong{display:block;margin-bottom:7px;font-size:13px}
 .travelguide ul{padding-left:18px;margin:0}
 .travelguide li+li{margin-top:6px}
+
+/* On-site self-guided tours */
+.self-guide{margin:12px 0 8px;border:1px solid #d7e4dd;border-radius:11px;background:#f8fbf9;overflow:hidden;color:#25463c}
+.self-guide summary{cursor:pointer;list-style:none;padding:12px 13px;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.self-guide summary::-webkit-details-marker{display:none}
+.self-guide summary::after{content:"⌄";font-size:18px;color:#476b5d}
+.self-guide[open] summary::after{content:"⌃"}
+.self-guide summary span{font-size:11px;font-weight:400;color:#647d72;margin-left:auto}
+.guide-body{padding:0 14px 14px;line-height:1.8;font-size:13px}
+.guide-intro{margin:2px 0 12px;color:#687f74;font-size:12px}
+.guide-step{border-top:1px solid #e1e9e4;padding:12px 0}
+.guide-step strong{display:block;font-size:12px;color:#24644d;margin-bottom:4px}
+.guide-step p{margin:0!important;font-size:13px!important;line-height:1.85!important;color:#253c34!important}
