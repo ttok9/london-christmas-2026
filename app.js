@@ -15,22 +15,22 @@ const days=[
 ];
 const travelLegs = {
   '17': [
-    ["heathrow", "paddington", "transit", "Elizabeth line 약 30–45분", "터미널에서 역까지 걷는 시간 별도"],
-    ["paddington", "home", "transit", "지하철 운행 시 약 30–45분", "Paddington → Bakerloo line → Oxford Circus → Victoria line → Vauxhall. TfL은 파업 첫날 21:00 이후 지하철 운행이 없을 것으로 예상해요.", "36번 버스 + 도보 약 45–65분 · 지하철 감편 또는 21:00 이후"]
+    ["heathrow", "paddington", "transit", "Elizabeth line 약 30–45분", "터미널에서 역까지 걷는 시간 별도", null, "Elizabeth line £14.60 · Paddington에서 여정을 끝낼 때"],
+    ["paddington", "home", "transit", "지하철 운행 시 약 30–45분", "Paddington → Bakerloo line → Oxford Circus → Victoria line → Vauxhall. TfL은 파업 첫날 21:00 이후 지하철 운행이 없을 것으로 예상해요.", "36번 버스 + 도보 약 45–65분 · 지하철 감편 또는 21:00 이후 · 버스 £1.85", "Paddington에서 새로 탈 때 지하철 £3.00 비혼잡 / £3.10 혼잡 · 히스로부터 연결 환승하면 전체 £15.50"]
   ],
   '18': [
-    ["home", "bigben", "transit", "지하철 운행 시 약 20–30분", "Vauxhall → Victoria line → Green Park → Jubilee line → Westminster. 두 노선 모두 오전 파업 영향 가능.", "87번 버스 약 15–30분 또는 도보 약 25–30분"],
+    ["home", "bigben", "transit", "지하철 운행 시 약 20–30분", "Vauxhall → Victoria line → Green Park → Jubilee line → Westminster. 두 노선 모두 오전 파업 영향 가능.", "87번 버스 약 15–30분 또는 도보 약 25–30분 · 버스 £1.85 · 도보 무료", "지하철 £3.00 비혼잡 / £3.10 혼잡"],
     ["bigben", "park", "walking", "도보 약 8–12분", "Parliament Square를 지나 공원 동쪽으로"],
     ["park", "palace", "walking", "도보 약 8–15분", "공원 산책로에서 Buckingham Palace 방향"],
-    ["palace", "tower", "transit", "District line 운행 시 약 30–45분", "버킹엄궁 → St James’s Park역 도보 → District line → Tower Hill. 정오 이후에도 감편 가능 · 12:15 입장 준비.", "Charing Cross 인근까지 도보 + 15번 버스 약 45–60분"],
+    ["palace", "tower", "transit", "District line 운행 시 약 30–45분", "버킹엄궁 → St James’s Park역 도보 → District line → Tower Hill. 정오 이후에도 감편 가능 · 12:15 입장 준비.", "Charing Cross 인근까지 도보 + 15번 버스 약 45–60분 · 버스 £1.85", "지하철 £3.00 비혼잡 / £3.10 혼잡"],
     ["tower", "borough", "walking", "도보 약 20–25분", "London Bridge를 건너 Borough Market으로"],
     ["borough", "risotto", "walking", "시장 안 도보 약 2–5분", "매대 위치는 현장 안내 확인"],
     ["risotto", "bridge", "walking", "도보 약 15–20분", "템스강 남쪽 산책로 이용"],
-    ["bridge", "theatre", "transit", "District line 운행 시 약 30–45분", "타워브리지에서 Tower Hill역까지 도보 → District line → Embankment → 극장까지 도보. 18:30 도착 목표.", "Tower Hill 쪽에서 15번 버스 + 도보 약 40–60분"],
-    ["theatre", "home", "transit", "Victoria line + 도보 약 25–35분", "극장에서 Green Park역까지 도보 → Victoria line → Vauxhall. TfL은 18:00경부터 정상 운행을 예상해요.", "Trafalgar Square에서 87번 버스 + 도보 약 25–40분"]
+    ["bridge", "theatre", "transit", "District line 운행 시 약 30–45분", "타워브리지에서 Tower Hill역까지 도보 → District line → Embankment → 극장까지 도보. 18:30 도착 목표.", "Tower Hill 쪽에서 15번 버스 + 도보 약 40–60분 · 버스 £1.85", "지하철 £3.00 비혼잡 / £3.10 혼잡"],
+    ["theatre", "home", "transit", "Victoria line + 도보 약 25–35분", "극장에서 Green Park역까지 도보 → Victoria line → Vauxhall. TfL은 18:00경부터 정상 운행을 예상해요.", "Trafalgar Square에서 87번 버스 + 도보 약 25–40분 · 버스 £1.85", "지하철 £3.00 · 공연 후 비혼잡 시간대"]
   ],
   '19': [
-    ["home", "southken", "transit", "Victoria·District line + 도보 약 30–45분", "Vauxhall → Victoria에서 District line 환승 → South Kensington. 07:20 집합 전 첫차 확인.", "Circle line은 파업 첫날 운행 중단 가능성이 있으니 District line 확인"],
+    ["home", "southken", "transit", "Victoria·District line + 도보 약 30–45분", "Vauxhall → Victoria에서 District line 환승 → South Kensington. 07:20 집합 전 첫차 확인.", "Circle line은 파업 첫날 운행 중단 가능성이 있으니 District line 확인", "지하철 £3.00 · 주말 비혼잡 요금"],
     ["southken", "stone", "driving", "투어 차량 약 1시간 45분–2시간 15분", "07:30 출발 · 교통 상황에 따라 변동"],
     ["stone", "bourton", "driving", "투어 차량 약 1시간 30분–2시간", "중간 정차·교통 상황에 따라 변동"],
     ["bourton", "oxford", "driving", "투어 차량 약 50–75분", "옥스퍼드 하차 지점은 가이드 안내"],
@@ -43,42 +43,42 @@ const travelLegs = {
     ["sheldonian", "blackwell", "walking", "도보 약 1–3분"],
     ["blackwell", "martyrs", "walking", "도보 약 4–7분"],
     ["martyrs", "christchurch", "walking", "도보 약 10–15분", "기념탑을 건너뛰면 실제 출발 지점이 달라질 수 있어요"],
-    ["christchurch", "home",null,"투어 차량 약 1시간 45분–2시간 30분 + 숙소 이동", "South Kensington 18:30–19:00 도착 예정. 운행 시 District line → Victoria → Victoria line → Vauxhall 약 30–45분 추가.", "452번 버스는 Exhibition Road 정류장에서 Vauxhall 방향 · 파업 첫날 21:00 이후 지하철 운행 중단 예상"]
+    ["christchurch", "home", null, "투어 차량 약 1시간 45분–2시간 30분 + 숙소 이동", "South Kensington 18:30–19:00 도착 예정. 운행 시 District line → Victoria → Victoria line → Vauxhall 약 30–45분 추가.", "452번 버스는 Exhibition Road 정류장에서 Vauxhall 방향 · 파업 첫날 21:00 이후 지하철 운행 중단 예상 · 버스 £1.85", "투어 차량은 상품에 포함 · 런던 도착 후 지하철 £3.00 · 주말 비혼잡 요금"]
   ],
   '20': [
-    ["home", "notting", "transit", "지하철 운행 시 약 35–50분", "Vauxhall → Victoria line → Oxford Circus → Central line → Notting Hill Gate. 오전에는 두 노선 모두 감편 가능.", "452번 버스 + 도보 약 45–65분"],
+    ["home", "notting", "transit", "지하철 운행 시 약 35–50분", "Vauxhall → Victoria line → Oxford Circus → Central line → Notting Hill Gate. 오전에는 두 노선 모두 감편 가능.", "452번 버스 + 도보 약 45–65분 · 버스 £1.85", "지하철 £3.00 · 주말 비혼잡 요금"],
     ["notting", "portobello", "walking", "도보 약 10–15분", "Portobello Road를 따라 이동"],
     ["portobello", "daunt", "walking", "도보 약 5–12분", "마켓에서 둘러본 위치에 따라 변동"],
     ["daunt", "notting", null, "주변 식당까지 도보 약 5–15분", "브런치 장소 확정 후 조정"],
-    ["notting", "covent", "transit", "Central line 운행 시 약 30–45분", "Notting Hill Gate → Tottenham Court Road → 코벤트가든까지 도보. 정오 이후에도 회복 중 감편 가능.", "94번 버스 + 도보 약 45–65분"],
+    ["notting", "covent", "transit", "Central line 운행 시 약 30–45분", "Notting Hill Gate → Tottenham Court Road → 코벤트가든까지 도보. 정오 이후에도 회복 중 감편 가능.", "94번 버스 + 도보 약 45–65분 · 버스 £1.85", "지하철 £3.00 · 주말 비혼잡 요금"],
     ["covent", "neal", "walking", "도보 약 5–8분"],
     ["neal", "piccadilly", "walking", "도보 약 10–15분"],
     ["piccadilly", "waterstones", "walking", "도보 약 2–4분"],
-    ["waterstones", "southbank", "walking", "도보 약 25–35분", "Golden Jubilee Bridge를 건너 Southbank Centre로.", "Bakerloo line 운행 시 Piccadilly Circus → Waterloo + 도보 약 20–30분"],
+    ["waterstones", "southbank", "walking", "도보 약 25–35분", "Golden Jubilee Bridge를 건너 Southbank Centre로.", "Bakerloo line 운행 시 Piccadilly Circus → Waterloo + 도보 약 20–30분 · 지하철 £3.00", "도보 무료"],
     ["southbank", "river", "walking", "도보 약 35–45분", "템스강 남쪽 산책로 이용 · 혼잡 시 여유 확보"],
-    ["river", "home", "transit", "지하철 + 철도 약 30–45분", "London Bridge → Waterloo(Jubilee line) → Vauxhall(South Western Railway) · 지연 시 버스 확인"]
+    ["river", "home", "transit", "지하철 + 철도 약 30–45분", "London Bridge → Waterloo(Jubilee line) → Vauxhall(South Western Railway) · 지연 시 버스 확인", null, "Jubilee + South Western Railway 전체 £4.80 · 주말 비혼잡 요금"]
   ],
   '21': [
-    ["home", "museum", "transit", "지하철 + 도보 약 25–40분", "Victoria line → Oxford Circus에서 Central line 환승 → Tottenham Court Road"],
+    ["home", "museum", "transit", "지하철 + 도보 약 25–40분", "Victoria line → Oxford Circus에서 Central line 환승 → Tottenham Court Road", null, "지하철 £3.00 비혼잡 / £3.10 혼잡"],
     ["museum", "leicester", "walking", "도보 약 12–18분", "점심 시간 별도"],
     ["leicester", "mm", "walking", "도보 약 1–3분"],
-    ["mm", "winter", "transit", "Piccadilly line + 도보 약 20–35분", "Leicester Square → Hyde Park Corner(Blue Gate) 또는 Knightsbridge(Green Gate). 게이트와 역 혼잡 확인.", "Piccadilly를 따라 도보 약 30–45분"],
-    ["winter", "home", "transit", "도보 + Victoria line 약 25–40분", "출구 위치에 따라 Green Park 또는 Victoria에서 Vauxhall 방향"]
+    ["mm", "winter", "transit", "Piccadilly line + 도보 약 20–35분", "Leicester Square → Hyde Park Corner(Blue Gate) 또는 Knightsbridge(Green Gate). 게이트와 역 혼잡 확인.", "Piccadilly를 따라 도보 약 30–45분 · 도보 무료", "지하철 £3.00 비혼잡 / £3.10 혼잡"],
+    ["winter", "home", "transit", "도보 + Victoria line 약 25–40분", "출구 위치에 따라 Green Park 또는 Victoria에서 Vauxhall 방향", null, "지하철 £3.00 · 일정상 비혼잡 시간대"]
   ],
   '22': [
-    ["home", "va", "transit", "지하철 + 도보 약 30–45분", "Victoria에서 District 또는 Circle line 환승 → South Kensington"],
+    ["home", "va", "transit", "지하철 + 도보 약 30–45분", "Victoria에서 District 또는 Circle line 환승 → South Kensington", null, "지하철 £3.00 비혼잡 / £3.10 혼잡"],
     ["va", "vacafe", null, "박물관 내부 도보 약 3–8분", "Main Café 표지판을 따라 이동"],
     ["vacafe", "nhm", "walking", "도보 약 5–10분", "Exhibition Road 또는 Cromwell Road 쪽 출입구와 보안 대기 확인"],
-    ["nhm", "gallery", "transit", "Piccadilly line + 도보 약 25–35분", "South Kensington → Leicester Square · 점심 시간 별도"],
+    ["nhm", "gallery", "transit", "Piccadilly line + 도보 약 25–35분", "South Kensington → Leicester Square · 점심 시간 별도", null, "지하철 £3.00 · 일정상 비혼잡 시간대"],
     ["gallery", "regent", "walking", "도보 약 10–15분", "Piccadilly Circus 쪽 리젠트 스트리트 기준"],
     ["regent", "carnaby", "walking", "도보 약 5–10분"],
     ["carnaby", "oxfordst", "walking", "도보 약 7–12분", "Oxford Circus 쪽 옥스퍼드 스트리트 기준"],
     ["oxfordst", "chipotle", "walking", "도보 약 12–20분", "Tottenham Court Road 방향"],
-    ["chipotle", "home", "transit", "도보 + Victoria line 약 25–35분", "Oxford Circus까지 걸어서 이동 후 Vauxhall 방향"]
+    ["chipotle", "home", "transit", "도보 + Victoria line 약 25–35분", "Oxford Circus까지 걸어서 이동 후 Vauxhall 방향", null, "지하철 £3.00 · 일정상 비혼잡 시간대"]
   ],
   '23': [
-    ["home", "clapham", "transit", "South Western Railway + 도보 약 15–30분", "Vauxhall역에서 탑승 · Clapham Junction 환승"],
-    ["clapham", "gatwick", "transit", "Southern 직통 열차 약 25–35분", "열차 대기·공항 내 터미널 이동 별도"]
+    ["home", "clapham", "transit", "South Western Railway + 도보 약 15–30분", "Vauxhall역에서 탑승 · Clapham Junction 환승", null, "개트윅까지 이어 타는 전체 철도 여정에 포함 · Clapham Junction에서 개찰구 밖으로 나갈 필요 없어요."],
+    ["clapham", "gatwick", "transit", "Southern 직통 열차 약 25–35분", "열차 대기·공항 내 터미널 이동 별도", null, "Vauxhall 출발 전체 £10.50 비혼잡 / £15.60 혼잡 · 예정 출발 시각에는 £10.50 예상"]
   ]
 };
 
@@ -92,9 +92,10 @@ const strikeNotices = {
 function renderTravelGuide(day) {
   const notice = strikeNotices[day.date];
   return `<p>이동 시간은 예상 범위예요. 교통편 대기·환승과 혼잡에 따라 달라질 수 있어요.</p>
+    <p>요금은 성인 비접촉 결제 편도 기준이에요. 버스는 같은 카드나 기기로 첫 승차 후 1시간 안에 환승하면 추가 요금이 없어요. 시내 1–2존 일일 상한은 £8.90, 버스·트램만 타면 £5.55예요.</p>
     ${notice ? `<p><strong>지하철 파업 안내</strong> ${notice}</p>
       <a href="https://tfl.gov.uk/status-updates/strikes" target="_blank" rel="noopener">TfL 파업 공지 ↗</a> · ` : ''}
-    <a href="https://tfl.gov.uk/tube-dlr-overground/status/" target="_blank" rel="noopener">TfL 실시간 운행 상태 ↗</a>
+    <a href="https://tfl.gov.uk/tube-dlr-overground/status/" target="_blank" rel="noopener">TfL 실시간 운행 상태 ↗</a> · <a href="https://tfl.gov.uk/fares/find-fares/single-fare-finder" target="_blank" rel="noopener">TfL 편도 요금 ↗</a> · <a href="https://tfl.gov.uk/how-to-pay/pay-as-you-go/fare-capping" target="_blank" rel="noopener">일일 상한 ↗</a>
     ${day.date === '23' ? ' · <a href="https://www.nationalrail.co.uk/" target="_blank" rel="noopener">National Rail 운행 확인 ↗</a>' : ''}`;
 }
 
@@ -104,10 +105,10 @@ function renderTravelLeg(day, index) {
   const current = day.stops[index];
   const leg = travelLegs[day.date]?.find(([from, to]) => from === previous.key && to === current.key);
   if (!leg) return '';
-  const [, , mode, label, detail, alternative] = leg;
+  const [, , mode, label, detail, alternative, fare] = leg;
   const place = stop => encodeURIComponent(mapPlaces[stop.key] || stop.name + ', London, UK');
   const link = mode ? `<a href="https://www.google.com/maps/dir/?api=1&origin=${place(previous)}&destination=${place(current)}&travelmode=${mode}" target="_blank" rel="noopener" aria-label="${previous.name}에서 ${current.name}까지 길찾기">길찾기 ↗</a>` : '';
-  return `<div class="travel-leg"><span class="travel-leg-arrow" aria-hidden="true">↓</span><div><strong>${label}</strong>${detail ? `<small>${detail}</small>` : ''}${alternative ? `<small>대안 · ${alternative}</small>` : ''}</div>${link}</div>`;
+  return `<div class="travel-leg"><span class="travel-leg-arrow" aria-hidden="true">↓</span><div><strong>${label}</strong>${fare ? `<small><strong>요금</strong> · ${fare}</small>` : ''}${detail ? `<small>${detail}</small>` : ''}${alternative ? `<small>대안 · ${alternative}</small>` : ''}</div>${link}</div>`;
 }
 const $=id=>document.getElementById(id);
 const stopNumber=(stops,n)=>{const main=stops.slice(0,n+1).filter(x=>!x.sub).length;return stops[n].sub?`${main}-${stops.slice(0,n+1).reverse().findIndex(x=>!x.sub)}`:String(main)};
