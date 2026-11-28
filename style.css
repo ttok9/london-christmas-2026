@@ -46,3 +46,22 @@ html{overflow-x:hidden}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe 
 #photoViewer{border:0;padding:0;background:transparent;max-width:min(94vw,1000px);max-height:90dvh;overflow:visible;box-shadow:none}
 #photoViewer::backdrop{background:rgba(10,18,16,.84)}
 #photoViewer img{display:block;max-width:94vw;max-height:88dvh;width:auto;height:auto;object-fit:contain;border-radius:10px;cursor:zoom-out;box-shadow:0 12px 45px rgba(0,0,0,.35)}
+
+.travelguide p { margin: 0 0 .45rem; line-height: 1.55; }
+.travelguide a { color: var(--green); text-underline-offset: .18em; }
+.travel-leg {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .45rem;
+  margin: .45rem 0 .65rem;
+  padding: .55rem .6rem;
+  border-radius: .5rem;
+  background: #edf1e7;
+  color: var(--green);
+  font-size: .82rem;
+  line-height: 1.4;
+}
+.travel-leg-arrow { text-align: center; font-weight: 700; }
+.travel-leg small { display: block; margin-top: .18rem; color: #4f6154; font-size: .77rem; }
+.travel-leg a { color: inherit; white-space: nowrap; text-underline-offset: .18em; }
