@@ -5,9 +5,9 @@ const directPhotos={sighs:"https://upload.wikimedia.org/wikipedia/commons/1/12/H
 async function loadStopPhotos(){const photos=[...document.querySelectorAll('.stop-thumb[data-photo-key]')];await Promise.all([...new Set(photos.map(el=>el.dataset.photoKey))].map(async key=>{let url=directPhotos[key]||photoCache.get(key);if(url===undefined&&photoPages[key]){try{const endpoint='https://en.wikipedia.org/w/api.php?'+new URLSearchParams({action:'query',format:'json',prop:'pageimages',pithumbsize:'320',titles:photoPages[key],redirects:'1',origin:'*'});const res=await fetch(endpoint);if(!res.ok)throw Error('photo fetch failed');const json=await res.json();url=Object.values(json.query?.pages||{})[0]?.thumbnail?.source||null}catch{url=null}photoCache.set(key,url)}if(!url)return;document.querySelectorAll('.stop-thumb[data-photo-key]').forEach(el=>{if(el.dataset.photoKey!==key)return;el.onerror=()=>{el.hidden=true};el.src=url;el.hidden=false})}));}
 const s=(key,name,time,desc,optional=false)=>({key,name,time,desc,optional});
 const days=[
-{date:'17',dow:'THU',short:'런던에 도착',title:'런던 도착 · 숙소 이동',summary:'인천 → 베이징 다싱 → 런던. 첫날은 편안하게 숙소까지.',note:'09:25 인천 출발 · 10:40 다싱 도착 · 14:35 런던행 출발. 항공편은 제공된 일정 기준입니다. Elizabeth line·36번 버스 운행 및 터미널 확인. 체크인 지연 시 호스트에게 연락하세요.',stops:[s('heathrow','히스로공항','17:55–19:45','입국심사·수하물 수령. 도착 터미널 확인'),s('paddington','Paddington','19:00–20:00','Elizabeth line → 36번 버스 환승 예정'),s('home','Vauxhall · 숙소','21:00–22:00','Nando’s Vauxhall Arches 근처 호스트 미팅 · 휴식')]},
+{date:'17',dow:'THU',short:'런던에 도착',title:'런던 도착 · 숙소 이동',summary:'인천 → 베이징 다싱 → 런던. 첫날은 편안하게 숙소까지.',note:'09:25 인천 출발 · 10:40 다싱 도착 · 14:35 런던행 출발. 항공편은 제공된 일정 기준입니다. Elizabeth line·36번 버스 운행 및 터미널 확인. 체크인 지연 시 호스트에게 연락하세요.',stops:[s('heathrow','히스로공항','17:55–19:45','입국심사·수하물 수령. 도착 터미널 확인'),s('paddington','Paddington','19:00–20:00','Bakerloo·Victoria line 환승 또는 36번 버스 · TfL 운행 확인'),s('home','Vauxhall · 숙소','21:00–22:00','Nando’s Vauxhall Arches 근처 호스트 미팅 · 휴식')]},
 {date:'18',dow:'FRI',short:'왕관 보석 & 랜드마크',title:'런던 주요 명소 · 해리포터 연극',summary:'빅벤·버킹엄궁·런던탑 왕관 보석·타워브리지, 저녁 7시 해리포터 연극 관람.',note:'김슬민 님과 동행 예정(변동 가능). 런던탑 관람 2시간 45분 확보 · 12:30 입장 목표. HRP 공식 달력 기준 12/18 09:00–16:30, 마지막 입장 15:00, 마지막 Yeoman Warder 투어 14:30. 타워브리지 이후 극장 이동 및 간단한 저녁 시간 확보. 왕관 보석 전시실 사진 촬영 금지. 18:30까지 Palace Theatre에 도착하세요. 공연 예매 확정 · Balcony C열 28번 · 난간 시야 제한 및 좁은 다리 공간 안내.',stops:[s('home','Vauxhall 출발','09:00–10:00','웨스트민스터로 이동'),s('bigben','빅벤 · 웨스트민스터','10:00–10:30','국회의사당과 빅벤 외관 사진'),s('park','세인트제임스 파크','10:30–11:00','공원을 지나 버킹엄궁 방향 산책'),s('palace','버킹엄궁','11:00–11:25','외관 구경 후 런던탑으로 이동'),s('tower','런던탑 · Crown Jewels 💎','12:30–15:15','12:30 입장 목표 · 성인 £38(기부금 제외) · 왕관 보석 포함 · 12/18 09:00–16:30, 마지막 입장 15:00 · 회차 잔여석 확인 필요'),s('borough','버러마켓','15:45–15:55','12/18 금요일 10:00–17:00 · 무료 · 식품 매대는 재고나 준비 상황에 따라 조기 마감 가능'),{...s('risotto','Turnips · Wild Mushroom Risotto','15:55–16:25','Three Crown Square · 43 Borough Market · 금요일 10:00–17:00, 월요일 휴무 · 가격과 맛보기 제공 여부 현장 확인 · 지도 핀은 매대 구역 근사 위치'),sub:true},s('bridge','타워브리지','16:25–17:00','다리 외관 · 템스강 풍경 촬영'),s('theatre','Palace Theatre · 해리포터 연극 🎭','18:30–21:55','19:00 공연 확정 · 18:30까지 도착 · Balcony C열 28번 · £30 · 난간 시야 제한 · 공식 예매: https://nimaxtheatres.com/shows/harry-potter-cursed-child/'),s('home','Vauxhall 숙소 복귀','22:00 이후','극장에서 Vauxhall로 이동 · 운행편 확인')]},
-{date:'19',dow:'SAT',short:'영국 근교 여행 · 예약 완료',title:'스톤헨지 · 코츠월드 · 옥스퍼드 투어',summary:'한국인 가이드 종일 투어 예약 완료 · 07:20 사우스켄싱턴 Ben’s Cookies 집합, 07:30 출발.',note:'예약한 더트리퍼 상품 안내 기준. 07:20까지 South Kensington역(Zone 1) 인근 Ben’s Cookies 앞 집합, 07:30 출발. 상품 기준 최소 6인 · 수신기 £2, 3.5mm 유선 이어폰 준비(미지참 시 £2 구매 안내). South Kensington 귀환 예상 18:30–19:00. 차량·한국인 가이드 포함, 관광지 입장료는 별도(상품 안내: 스톤헨지 성인 £25, 크라이스트처치 칼리지 성인 약 £18~20). 각 관광지 세부 시각과 옥스퍼드 내 방문 순서는 현장 운영에 따라 달라질 수 있음. ',stops:[s('home','Vauxhall 숙소 출발','06:20–06:35 권장','07:20 집합에 맞춰 여유 있게 이동 · 실제 첫차/파업 확인'),s('southken','South Kensington · Ben’s Cookies','07:20 집합 · 07:30 출발','South Kensington역(Zone 1) 인근, Old Brompton Road · 가이드 미팅 후 전용 차량 탑승'),s('stone','스톤헨지','09:30–10:50','전용 차량으로 약 2시간 이동 · 투어사 권장 입장 09:30 · 입장권은 투어 출발 확정 후 별도 예매'),s('bourton','코츠월드 · 버턴 온 더 워터','12:30–14:00','마을 산책과 점심 · 이동 시간은 현장 상황에 따라 변동'),s('oxford','옥스퍼드 · 대학도시 투어','15:00–15:50 워킹 투어','상품 게시 일정 기준 · 이후 15:50 크라이스트처치 개별 입장 또는 자유시간 · 17:00 런던행 출발'),s('merton','머튼 칼리지','약 10분 안내','옥스퍼드의 오래된 칼리지 건물'),{...s('univ','유니버시티 칼리지','약 20분 안내','High Street의 칼리지 외관 · 건물 입장은 가이드 안내 기준'),sub:true},{...s('radcliffe','래드클리프 카메라','약 10분 안내','Radcliffe Square의 원형 열람실 외관 · 내부는 별도 공식 가이드 투어 확인'),sub:true},s('bodleian','보들리언 도서관','약 20분 안내','옥스퍼드 대학 도서관 외관 중심'),s('sighs','탄식의 다리','약 10분 안내','허트퍼드 칼리지 연결 통로'),s('sheldonian','셸도니언 극장','약 20분 안내','크리스토퍼 렌이 설계한 대학 행사장'),s('blackwell','블랙웰 서점','약 10분 안내','옥스퍼드의 유명 서점'),s('martyrs','순교자 기념탑','상품 상세 코스','종교개혁 당시 순교자들을 기리는 기념탑 · 실제 방문은 가이드 안내'),s('christchurch','크라이스트처치 칼리지','15:50–16:50 자유시간','해리포터 촬영지로 알려진 대학 · 투어사 권장 개별 입장 15:50 · 투어 출발 확정 후 예매 · 외관 관람 가능'),s('home','런던 복귀 · 숙소 이동','18:30–19:00 해산 예정','상품 안내상 18:30–19:00 South Kensington역 해산 예정 · 숙소행 버스와 파업 당일 운행 확인')]},
+{date:'19',dow:'SAT',short:'영국 근교 여행 · 예약 완료',title:'스톤헨지 · 코츠월드 · 옥스퍼드 투어',summary:'한국인 가이드 종일 투어 예약 완료 · 07:20 사우스켄싱턴 Ben’s Cookies 집합, 07:30 출발.',note:'예약한 더트리퍼 상품 안내 기준. 07:20까지 South Kensington역(Zone 1) 인근 Ben’s Cookies 앞 집합, 07:30 출발. 상품 기준 최소 6인 · 수신기 £2, 3.5mm 유선 이어폰 준비(미지참 시 £2 구매 안내). South Kensington 귀환 예상 18:30–19:00. 차량·한국인 가이드 포함, 관광지 입장료는 별도(상품 안내: 스톤헨지 성인 £25, 크라이스트처치 칼리지 성인 약 £18~20). 각 관광지 세부 시각과 옥스퍼드 내 방문 순서는 현장 운영에 따라 달라질 수 있음. ',stops:[s('home','Vauxhall 숙소 출발','06:20–06:35 권장','07:20 집합에 맞춰 여유 있게 이동 · 실제 첫차/파업 확인'),s('southken','South Kensington · Ben’s Cookies','07:20 집합 · 07:30 출발','South Kensington역(Zone 1) 인근, Old Brompton Road · 가이드 미팅 후 전용 차량 탑승'),s('stone','스톤헨지','09:30–10:50','전용 차량으로 약 2시간 이동 · 투어사 권장 입장 09:30 · 입장권은 투어 출발 확정 후 별도 예매'),s('bourton','코츠월드 · 버턴 온 더 워터','12:30–14:00','마을 산책과 점심 · 이동 시간은 현장 상황에 따라 변동'),s('oxford','옥스퍼드 · 대학도시 투어','15:00–15:50 워킹 투어','상품 게시 일정 기준 · 이후 15:50 크라이스트처치 개별 입장 또는 자유시간 · 17:00 런던행 출발'),s('merton','머튼 칼리지','약 10분 안내','옥스퍼드의 오래된 칼리지 건물'),{...s('univ','유니버시티 칼리지','약 20분 안내','High Street의 칼리지 외관 · 건물 입장은 가이드 안내 기준'),sub:true},{...s('radcliffe','래드클리프 카메라','약 10분 안내','Radcliffe Square의 원형 열람실 외관 · 내부는 별도 공식 가이드 투어 확인'),sub:true},s('bodleian','보들리언 도서관','약 20분 안내','옥스퍼드 대학 도서관 외관 중심'),s('sighs','탄식의 다리','약 10분 안내','허트퍼드 칼리지 연결 통로'),s('sheldonian','셸도니언 극장','약 20분 안내','크리스토퍼 렌이 설계한 대학 행사장'),s('blackwell','블랙웰 서점','약 10분 안내','옥스퍼드의 유명 서점'),s('martyrs','순교자 기념탑','상품 상세 코스','종교개혁 당시 순교자들을 기리는 기념탑 · 실제 방문은 가이드 안내'),s('christchurch','크라이스트처치 칼리지','15:50–16:50 자유시간','해리포터 촬영지로 알려진 대학 · 투어사 권장 개별 입장 15:50 · 투어 출발 확정 후 예매 · 외관 관람 가능'),s('home','런던 복귀 · 숙소 이동','18:30–19:00 해산 예정','상품 안내상 18:30–19:00 South Kensington역 해산 예정 · 숙소행 지하철·버스의 파업 당일 운행 확인')]},
 {date:'20',dow:'SUN',short:'골목 & 크리스마스 마켓',title:'노팅힐 · 시내 관광 · 크리스마스 마켓',summary:'노팅힐의 파스텔 골목과 포토벨로 특별 일요 마켓, 저녁 크리스마스 마켓.',note:'김슬민 님과 낮 일정, 김은재 님은 마켓부터 합류 예정(변동 가능). Daunt Books 노팅힐점은 일요일 11:00–18:00. 포토벨로 특별 일요 마켓은 10:00–16:00. 사우스뱅크 → 런던브리지 이동은 도보 또는 교통 이용.',stops:[s('home','Vauxhall 출발','09:00–09:50','아침 후 노팅힐 이동'),s('notting','노팅힐','09:50–10:00','파스텔 주택가를 지나 마켓으로 이동'),{...s('portobello','포토벨로 마켓 · 크리스마스 특별 일요 마켓','10:00–12:00','2026 Winter Sunday Markets: 12월 6·13·20일 10:00–16:00 · 무료 · 예약 불필요 · 빈티지, 선물, 간식 · 개별 매대 마감은 현장 확인'),sub:true},s('daunt','Daunt Books · 노팅힐','12:00–12:20','21 Kensington Park Road · 일요일 11:00–18:00'),s('notting','노팅힐 브런치','12:20–12:45','장소 선택 전 · Ladbroke Arms는 12/20 점심 1인 빈자리 없음(11/28 조회), 피쉬앤칩스 £27 + 12.5% 서비스료(공개 일요일 메뉴)'),s('covent','코벤트가든','13:15–14:15','크리스마스 장식 · 쇼핑'),s('neal','닐스야드','14:15–14:50','작은 골목 · 카페'),s('piccadilly','피카딜리 서커스','14:50–15:10','광장과 주변 거리 산책'),s('waterstones','Waterstones · Piccadilly','15:10–15:45','대형 서점 구경 · 주변 Tesco도 확인'),s('southbank','Southbank Winter Market','16:15–17:30','11/2 개장 · 12/20 매대 11:00–22:00, 바 23:00까지 · 무료, 마켓 예약 불필요 · 12/25·12/31·1/1 휴장, 1/3부터 종료'),s('river','Winter by the River','18:15–19:45','11/10–1/3 · 12/20 11:00–22:00 · 마켓 무료, 컬링 별도 · 12/25 휴장 · 12/24·1/3 17:00, 12/31 21:00 종료 · 매대별 마감 미공개'),s('home','저녁 · 숙소 복귀','20:00 이후','자유롭게 저녁 후 휴식')]},
 {date:'21',dow:'MON',short:'박물관 & 원더랜드',title:'대영박물관 · 윈터 원더랜드',summary:'대영박물관 한국어 도슨트 예약 완료 · 저녁은 하이드파크에서.',note:'정신영 님과 동행 예정(윈터 원더랜드 포함 · 변동 가능). 예약 메일 기준 10:10 정문 맞은편 Starbucks(51 Great Russell St) 집합, 10:15 입장 및 투어 시작. 상품 기준 최소 4인, 3.5mm 유선 이어폰과 수신기 대여료 £2 준비. 윈터 원더랜드는 날짜·입장 시간을 지정해 예약하세요. Sky Garden은 15:30 일몰 후보이며 무료권이 확인되면 동선 조정. 윈터 원더랜드 18:00 회차의 가격·잔여석은 예매처에서 확인 필요.',stops:[s('home','Vauxhall 출발','09:00–10:00','아침 후 대영박물관 이동'),s('museum','대영박물관','10:10 집합–14:00','10:10 정문 맞은편 Starbucks 집합 · 10:15 입장 및 한국어 투어 · 이후 자유 관람 · 상설전 £0 · 월요일 10:00–17:00 · 12/24–26 휴관 · 14:00–15:00 점심'),s('leicester','레스터 스퀘어','15:00–15:30','Skate Leicester Square 부대 마켓 · 10/31–1/3 · 12/21 마켓 10:00–22:00 · 12/25 휴장 · 마켓 구경 무료, 스케이트는 별도 유료(마지막 21:15)'),s('mm','M&M’s World','15:30–15:50','초콜릿과 기념품 쇼핑'),s('winter','Hyde Park Winter Wonderland','18:00–20:30','11/19–1/3 · 12/21 10:00–22:00, 마지막 입장 21:30 · 12/25 휴장 · 시간 지정 입장권 필요 · 성인 안내가 일반 £5.50, 성수기 £8.25부터 · 18:00 실제 가격과 잔여석 미확인 · 놀이기구 별도'),s('home','숙소 복귀','20:30 이후','휴식')]},
 {date:'22',dow:'TUE',short:'V&A · 자연사 · 미술 · 조명',title:'V&A · 자연사박물관 · 내셔널 갤러리',summary:'사우스켄싱턴에서 공예와 스콘, 자연사박물관을 즐기고 오후에는 명화와 크리스마스 조명.',note:'자연사박물관 11:15 성인 1명 무료 예약 완료. V&A와 카페 시각은 예상이며 내셔널 갤러리 14:00은 입장 목표 시각. 다음 날 체크아웃 준비.',stops:[s('home','Vauxhall 출발','09:00–10:00','사우스켄싱턴 이동'),{...s('va','빅토리아 앤 앨버트 박물관 · V&A','10:00–10:40','상설전 £0 · 일반 입장 예약 불필요 · 화요일 10:00–17:45(17:15부터 전시실 정리) · 12/24–26 휴관 · 캐스트 코트 중심 관람'),sub:true},{...s('vacafe','V&A Main Café · 스콘과 홍차','10:40–11:05','박물관 실내 카페 · 화요일 10:00–17:00 · 갓 구운 스콘과 홍차 · 클로티드 크림·딸기잼 제공 여부와 가격은 주문 전 확인'),sub:true},s('nhm','자연사박물관','11:15–13:15','11:15 성인 £0 입장권 예약 완료 · 힌츠 홀의 대왕고래와 공룡 중심 관람 · 특별전 별도 · 10:00–17:50, 마지막 입장 17:30 · 12/24–26 휴관'),s('gallery','내셔널 갤러리','14:00–17:00','14:00 입장 목표 · 예약 회신 대기 · Sainsbury Wing에서 무료 현장 입장 가능(대기 가능) · 점심은 이동 중 간단히 · 상설전 £0 · 특별전 별도 · 화요일 10:00–18:00 · 12/24–26 및 1/1 휴관'),s('regent','리젠트 스트리트','17:00–17:40','크리스마스 조명 감상'),s('carnaby','카나비 스트리트','17:40–18:20','조명과 상점 구경 · 개별 영업시간 확인'),s('oxfordst','옥스퍼드 스트리트','18:20–19:00','쇼핑 및 조명 · 개별 영업시간 확인'),s('chipotle','Chipotle · Tottenham Court Road','19:00–20:00','저녁 식사'),s('home','숙소 복귀','20:00 이후','짐 정리')]},
@@ -16,21 +16,21 @@ const days=[
 const travelLegs = {
   '17': [
     ["heathrow", "paddington", "transit", "Elizabeth line 약 30–45분", "터미널에서 역까지 걷는 시간 별도"],
-    ["paddington", "home", "transit", "36번 버스 + 도보 약 45–65분", "New Cross 방향, Vauxhall 하차"]
+    ["paddington", "home", "transit", "지하철 운행 시 약 30–45분", "Paddington → Bakerloo line → Oxford Circus → Victoria line → Vauxhall. TfL은 파업 첫날 21:00 이후 지하철 운행이 없을 것으로 예상해요.", "36번 버스 + 도보 약 45–65분 · 지하철 감편 또는 21:00 이후"]
   ],
   '18': [
-    ["home", "bigben", "transit", "87번 버스 + 도보 약 15–30분", "Westminster 하차 · 도보 대안 약 25–30분"],
+    ["home", "bigben", "transit", "지하철 운행 시 약 20–30분", "Vauxhall → Victoria line → Green Park → Jubilee line → Westminster. 두 노선 모두 오전 파업 영향 가능.", "87번 버스 약 15–30분 또는 도보 약 25–30분"],
     ["bigben", "park", "walking", "도보 약 8–12분", "Parliament Square를 지나 공원 동쪽으로"],
     ["park", "palace", "walking", "도보 약 8–15분", "공원 산책로에서 Buckingham Palace 방향"],
-    ["palace", "tower", "transit", "도보 + 15번 버스 약 45–60분", "Charing Cross 인근에서 Tower of London 방향 · 12:15 입장 준비"],
+    ["palace", "tower", "transit", "District line 운행 시 약 30–45분", "버킹엄궁 → St James’s Park역 도보 → District line → Tower Hill. 정오 이후에도 감편 가능 · 12:15 입장 준비.", "Charing Cross 인근까지 도보 + 15번 버스 약 45–60분"],
     ["tower", "borough", "walking", "도보 약 20–25분", "London Bridge를 건너 Borough Market으로"],
     ["borough", "risotto", "walking", "시장 안 도보 약 2–5분", "매대 위치는 현장 안내 확인"],
     ["risotto", "bridge", "walking", "도보 약 15–20분", "템스강 남쪽 산책로 이용"],
-    ["bridge", "theatre", "transit", "도보 + 15번 버스 약 40–60분", "Tower Hill 쪽에서 Charing Cross 방향 · 18:30까지 극장 도착"],
-    ["theatre", "home", "transit", "도보 + 87번 버스 약 25–40분", "Trafalgar Square에서 Vauxhall 방향"]
+    ["bridge", "theatre", "transit", "District line 운행 시 약 30–45분", "타워브리지에서 Tower Hill역까지 도보 → District line → Embankment → 극장까지 도보. 18:30 도착 목표.", "Tower Hill 쪽에서 15번 버스 + 도보 약 40–60분"],
+    ["theatre", "home", "transit", "Victoria line + 도보 약 25–35분", "극장에서 Green Park역까지 도보 → Victoria line → Vauxhall. TfL은 18:00경부터 정상 운행을 예상해요.", "Trafalgar Square에서 87번 버스 + 도보 약 25–40분"]
   ],
   '19': [
-    ["home", "southken", "transit", "지하철 + 도보 약 30–45분", "Victoria line → Victoria에서 District 또는 Circle line 환승 · 첫차 확인"],
+    ["home", "southken", "transit", "Victoria·District line + 도보 약 30–45분", "Vauxhall → Victoria에서 District line 환승 → South Kensington. 07:20 집합 전 첫차 확인.", "Circle line은 파업 첫날 운행 중단 가능성이 있으니 District line 확인"],
     ["southken", "stone", "driving", "투어 차량 약 1시간 45분–2시간 15분", "07:30 출발 · 교통 상황에 따라 변동"],
     ["stone", "bourton", "driving", "투어 차량 약 1시간 30분–2시간", "중간 정차·교통 상황에 따라 변동"],
     ["bourton", "oxford", "driving", "투어 차량 약 50–75분", "옥스퍼드 하차 지점은 가이드 안내"],
@@ -43,18 +43,18 @@ const travelLegs = {
     ["sheldonian", "blackwell", "walking", "도보 약 1–3분"],
     ["blackwell", "martyrs", "walking", "도보 약 4–7분"],
     ["martyrs", "christchurch", "walking", "도보 약 10–15분", "기념탑을 건너뛰면 실제 출발 지점이 달라질 수 있어요"],
-    ["christchurch", "home", null, "투어 차량 약 1시간 45분–2시간 30분 + 숙소 이동", "상품 안내상 South Kensington역 18:30–19:00 도착 · 지하철 파업으로 숙소까지 버스 우선"]
+    ["christchurch", "home",null,"투어 차량 약 1시간 45분–2시간 30분 + 숙소 이동", "South Kensington 18:30–19:00 도착 예정. 운행 시 District line → Victoria → Victoria line → Vauxhall 약 30–45분 추가.", "452번 버스는 Exhibition Road 정류장에서 Vauxhall 방향 · 파업 첫날 21:00 이후 지하철 운행 중단 예상"]
   ],
   '20': [
-    ["home", "notting", "transit", "452번 버스 + 도보 약 45–65분", "Notting Hill Gate 방향 · 오전 지하철 파업 예정"],
+    ["home", "notting", "transit", "지하철 운행 시 약 35–50분", "Vauxhall → Victoria line → Oxford Circus → Central line → Notting Hill Gate. 오전에는 두 노선 모두 감편 가능.", "452번 버스 + 도보 약 45–65분"],
     ["notting", "portobello", "walking", "도보 약 10–15분", "Portobello Road를 따라 이동"],
     ["portobello", "daunt", "walking", "도보 약 5–12분", "마켓에서 둘러본 위치에 따라 변동"],
     ["daunt", "notting", null, "주변 식당까지 도보 약 5–15분", "브런치 장소 확정 후 조정"],
-    ["notting", "covent", "transit", "지하철 + 도보 약 30–45분", "Central line → Tottenham Court Road · 지연 시 94번 버스 + 도보 약 45–65분"],
+    ["notting", "covent", "transit", "Central line 운행 시 약 30–45분", "Notting Hill Gate → Tottenham Court Road → 코벤트가든까지 도보. 정오 이후에도 회복 중 감편 가능.", "94번 버스 + 도보 약 45–65분"],
     ["covent", "neal", "walking", "도보 약 5–8분"],
     ["neal", "piccadilly", "walking", "도보 약 10–15분"],
     ["piccadilly", "waterstones", "walking", "도보 약 2–4분"],
-    ["waterstones", "southbank", "walking", "도보 약 25–35분", "Golden Jubilee Bridge를 건너 Southbank Centre로"],
+    ["waterstones", "southbank", "walking", "도보 약 25–35분", "Golden Jubilee Bridge를 건너 Southbank Centre로.", "Bakerloo line 운행 시 Piccadilly Circus → Waterloo + 도보 약 20–30분"],
     ["southbank", "river", "walking", "도보 약 35–45분", "템스강 남쪽 산책로 이용 · 혼잡 시 여유 확보"],
     ["river", "home", "transit", "지하철 + 철도 약 30–45분", "London Bridge → Waterloo(Jubilee line) → Vauxhall(South Western Railway) · 지연 시 버스 확인"]
   ],
@@ -62,7 +62,7 @@ const travelLegs = {
     ["home", "museum", "transit", "지하철 + 도보 약 25–40분", "Victoria line → Oxford Circus에서 Central line 환승 → Tottenham Court Road"],
     ["museum", "leicester", "walking", "도보 약 12–18분", "점심 시간 별도"],
     ["leicester", "mm", "walking", "도보 약 1–3분"],
-    ["mm", "winter", "walking", "도보 약 30–45분", "Piccadilly를 따라 Hyde Park 방향 · 입장 게이트에 따라 변동 · 18:00 입장 전 자유시간"],
+    ["mm", "winter", "transit", "Piccadilly line + 도보 약 20–35분", "Leicester Square → Hyde Park Corner(Blue Gate) 또는 Knightsbridge(Green Gate). 게이트와 역 혼잡 확인.", "Piccadilly를 따라 도보 약 30–45분"],
     ["winter", "home", "transit", "도보 + Victoria line 약 25–40분", "출구 위치에 따라 Green Park 또는 Victoria에서 Vauxhall 방향"]
   ],
   '22': [
@@ -83,10 +83,10 @@ const travelLegs = {
 };
 
 const strikeNotices = {
-  '17': '12/17 12:00~12/18 11:59 지하철 파업 예정. 공항에서는 Elizabeth line과 버스를 이용하는 경로를 우선 표시했어요.',
-  '18': '지하철 파업 예정 시간은 11:59까지예요. 저녁까지 운행이 줄어들 수 있어 버스·도보 경로를 우선 표시했어요.',
-  '19': '12/19 12:00~12/20 11:59 지하철 파업 예정. 오전 투어 집합 전에는 첫차와 운행 상태를 확인하고, 저녁에 런던으로 돌아오면 버스를 우선 확인하세요.',
-  '20': '지하철 파업 예정 시간은 11:59까지예요. 오전 노팅힐행은 452번 버스를 우선 이용하고, 오후에도 지하철 운행 상태를 확인하세요.'
+  '17': '12/17 12:00~12/18 11:59 파업 예정. Elizabeth line·DLR·London Overground·버스·트램은 운행 예정이나 혼잡할 수 있어요. 파업 첫날은 10:00부터 감편, 21:00 이후 Tube 운행 중단이 예상돼요.',
+  '18': '11:59까지 파업 예정. 오전 Circle·Piccadilly·Waterloo & City는 운행하지 않을 전망이며 다른 Tube 노선도 감편될 수 있어요. 정오부터 점차 회복, 약 18:00 정상화 예상이에요.',
+  '19': '12/19 12:00~12/20 11:59 파업 예정. 대부분 노선은 10:00 전까지 운행 예정이나 예외가 있어요. 아침에는 District line 첫차, 투어 복귀 때는 Tube 실시간 운행을 확인하세요.',
+  '20': '11:59까지 파업 예정. 오전 Circle·Piccadilly·Waterloo & City는 운행하지 않을 전망이며 Victoria·Central도 감편될 수 있어요. 정오부터 점차 회복, 약 18:00 정상화 예상이에요.'
 };
 
 function renderTravelGuide(day) {
@@ -104,10 +104,10 @@ function renderTravelLeg(day, index) {
   const current = day.stops[index];
   const leg = travelLegs[day.date]?.find(([from, to]) => from === previous.key && to === current.key);
   if (!leg) return '';
-  const [, , mode, label, detail] = leg;
+  const [, , mode, label, detail, alternative] = leg;
   const place = stop => encodeURIComponent(mapPlaces[stop.key] || stop.name + ', London, UK');
   const link = mode ? `<a href="https://www.google.com/maps/dir/?api=1&origin=${place(previous)}&destination=${place(current)}&travelmode=${mode}" target="_blank" rel="noopener" aria-label="${previous.name}에서 ${current.name}까지 길찾기">길찾기 ↗</a>` : '';
-  return `<div class="travel-leg"><span class="travel-leg-arrow" aria-hidden="true">↓</span><div><strong>${label}</strong>${detail ? `<small>${detail}</small>` : ''}</div>${link}</div>`;
+  return `<div class="travel-leg"><span class="travel-leg-arrow" aria-hidden="true">↓</span><div><strong>${label}</strong>${detail ? `<small>${detail}</small>` : ''}${alternative ? `<small>대안 · ${alternative}</small>` : ''}</div>${link}</div>`;
 }
 const $=id=>document.getElementById(id);
 const stopNumber=(stops,n)=>{const main=stops.slice(0,n+1).filter(x=>!x.sub).length;return stops[n].sub?`${main}-${stops.slice(0,n+1).reverse().findIndex(x=>!x.sub)}`:String(main)};
